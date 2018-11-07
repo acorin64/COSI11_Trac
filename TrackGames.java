@@ -12,19 +12,35 @@ public class TrackGames {
 
     switch (gameID) {
       case 1:
-      //this will be a method
+        playRPS();  //this will be a method
         break;
       case 2:
-      //this will be a method
+        playHangman();  //this will be a method
         break;
       case 3:
-      //this will be a method
+        playWar();  //this will be a method
         break;
       case 4:
-      //this will be a method
+        playQuiz();  //this will be a method
         break;
     }
 
+
   }
 
+  public static void playRPS() {
+    System.out.println("This game is not yet available.");
+  }
+
+  public static void playHangman() {
+    System.out.println("This game is not yet available.");
+  }
+
+  public static void playWar() {
+    System.out.println("This game is not yet available.");
+  }
+
+  public static void playQuiz() {
+    System.out.println("This game is not yet available.");
+  }
 }
