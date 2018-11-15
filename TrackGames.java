@@ -2,19 +2,20 @@ public class TrackGames {
   public static void main(String[] args){
 
     System.out.println("Hello, Welcome to Track Games!");
-    
-    mainLoop: while (true) {
+
+    mainLoop: while (true) {  //This loop allows the player to select a game from the main menu
       System.out.println("Please select a game by its number to play from the menu below:");
       System.out.println("1. Rocks, Paper, Scissors");
       System.out.println("2. Hangman");
       System.out.println("3. War (Card Game)");
       System.out.println("4. Quiz Game");
-      System.out.println("5. Exit Track Games");
-      int gameID = TextIO.getlnInt();
+      System.out.println("5. Tic-Tac-Toe");
+      System.out.println("6. Exit Track Games");
+      int gameID = TextIO.getlnInt(); //this gets the users game choice
 
-      switch (gameID) {
+      switch (gameID) { //this uses methods to launch the game that the player chooses
         case 1:
-          playRPS();  //this will be a method
+          playRPS();  //this is rock, paper, scissors
           break;
         case 2:
           playHangman();  //this will be a method
@@ -26,6 +27,9 @@ public class TrackGames {
           playQuiz();  //this will be a method
           break;
         case 5:
+          playTTT();  //this will be a method
+          break;
+        case 6:
           break mainLoop;
       }
 
@@ -125,6 +129,10 @@ public class TrackGames {
   }
 
   public static void playQuiz() {
+    System.out.println("This game is not yet available.");
+  }
+
+  public static void playTTT() {
     System.out.println("This game is not yet available.");
   }
 }
