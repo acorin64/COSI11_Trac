@@ -1,16 +1,24 @@
 public class TTT {
 
   public static char[][] board = new char[3][3]; //holds current gameboard status
-  public static int[] usedMoves = new int[9];
-  public static char playerSymbol = 'X';
-  public static int count = 0;
+  public static int[] usedMoves = new int[9]; //holds list of all used moves
+  public static char playerSymbol = 'X';  //denotes current player and their used symbol
 
   public static void main(String[] args){
     playTTT();
   } //end of main
 
   public static void playTTT() {
+//prepares the board by filling in the empty elements with spaces
+    for (int i=0; i<3; i++) {
+      for (int j=0; j<3; j++) {
+        board[i][j] = ' ';
+      } //end of inner FOR loop
+    } //end of outer FOR loop
+
 //Welcomes the player to the game
+    System.out.println();
+    System.out.println();
     System.out.println("Welcome to Text-based Two-player Tic-Tac-Toe!");
     System.out.println("Would you like to see the instructions?");
     boolean instructions = TextIO.getlnBoolean();
@@ -34,12 +42,22 @@ public class TTT {
 //gets each player's move
       System.out.println("Player "+playerSymbol+", please enter your move:");
       int move = TextIO.getlnInt();
+//evaluates whether this is a valid move
+      if (move < 1 || move > 9) {
+        System.out.println("That is not a valid move.");
+        continue playingTTT;
+      }
 //checks to see whether the move has already been used, and records its use
 //if it has not been used
       moveCheck: while (true) {
         if (usedMoves[move-1] == 1) {
           System.out.println("That move has been used, please enter your move:");
           move = TextIO.getlnInt();
+          //evaluates whether this is a valid move
+          if (move < 1 || move > 9) {
+            System.out.println("That is not a valid move.");
+            continue playingTTT;
+          }
         } else {
           usedMoves[move-1] = 1;
           break moveCheck;
@@ -54,25 +72,31 @@ public class TTT {
       }
     } //end of playingTTT
 
+    if (playerSymbol == 'X') {
+      System.out.println("The winner is Player 2 (O)!");
+    } else {
+      System.out.println("The winner is Player 1 (X)!");
+    }
 
-//!!named while loop (playing), broken when someone wins
-//!!current player enters 1-9
-//!!accounts for move being used already
-//!!use method "updateBoard" (will take 1-9 as int parameter)
-    //switch statement that will insert player symbol into correct gameboard spots
-//use method "checkForWin"
-    //This will check to see if someone has run and break the while loop if they have
-//!!use method/if statement - switch player symbol
-
+//ask if you will play again
+    System.out.println("Would you like to play again? (Type yes or no)");
+    boolean playAgain = TextIO.getlnBoolean();
+    if (playAgain) {
+      resetTTT(); //resets the game so it can be played again
+      playTTT();  //calls the initial method, restarting the game
+    } else {
+      return;
+    }
   } //end of playTTT
 
   public static void printBoard() { //prints the board in its current state
     for (int i=0; i<3; i++) {
       for (int j=0; j<3; j++) {
-        System.out.print("["+board[i][j]+"]");
+        System.out.printf("[%1s]", board[i][j]);
       }
       System.out.println();
     }
+    System.out.println();
   } //end of printBoard
 
   public static void updateBoard(int a) { //updates the board
@@ -98,25 +122,40 @@ public class TTT {
   } //end of switchPlayer
 
   public static boolean checkForWin() { //checks to see if a player has won
-    if (board[0][0] == board[0][1] && board[0][1] == board[0][2] && board[0][0] != '\u0000') { //horizontal top
+    if (board[0][0] == board[0][1] && board[0][1] == board[0][2] && board[0][0] != ' ') { //horizontal top
       return true;
-    } else if (board[1][0] == board[1][1] && board[1][1] == board[1][2] && board[1][0] != '\u0000') { //horizontal mid
+    } else if (board[1][0] == board[1][1] && board[1][1] == board[1][2] && board[1][0] != ' ') { //horizontal mid
       return true;
-    } else if (board[2][0] == board[2][1] && board[2][1] == board[2][2] && board[2][0] != '\u0000') { //horizontal bot
+    } else if (board[2][0] == board[2][1] && board[2][1] == board[2][2] && board[2][0] != ' ') { //horizontal bot
       return true;
-    } else if (board[0][0] == board[1][0] && board[1][0] == board[2][0] && board[0][0] != '\u0000') { //vertical left
+    } else if (board[0][0] == board[1][0] && board[1][0] == board[2][0] && board[0][0] != ' ') { //vertical left
       return true;
-    } else if (board[0][1] == board[1][1] && board[1][1] == board[2][1] && board[0][1] != '\u0000') { //vertical mid
+    } else if (board[0][1] == board[1][1] && board[1][1] == board[2][1] && board[0][1] != ' ') { //vertical mid
       return true;
-    } else if (board[0][2] == board[1][2] && board[1][2] == board[2][2] && board[0][2] != '\u0000') { //vertical right
+    } else if (board[0][2] == board[1][2] && board[1][2] == board[2][2] && board[0][2] != ' ') { //vertical right
       return true;
-    } else if (board[0][0] == board[1][1] && board[1][1] == board[2][2] && board[0][0] != '\u0000') { //top left corner
+    } else if (board[0][0] == board[1][1] && board[1][1] == board[2][2] && board[0][0] != ' ') { //top left corner
       return true;
-    } else if (board[0][2] == board[1][1] && board[1][1] == board[2][0] && board[0][2] != '\u0000') { //top right corner
+    } else if (board[0][2] == board[1][1] && board[1][1] == board[2][0] && board[0][2] != ' ') { //top right corner
       return true;
     } else {
       return false;
     }
   } //end of checkForWin
+
+  public static void resetTTT() { //resets the game so it can be played again
+//reset starting player to player 1 (X)
+    playerSymbol = 'X';
+//empty out the list of moves already used
+    for (int i=0; i<usedMoves.length; i++) {
+      usedMoves[i] = 0;
+    }
+//prepares the board by filling in the empty elements with spaces
+    for (int i=0; i<3; i++) {
+      for (int j=0; j<3; j++) {
+        board[i][j] = ' ';
+      } //end of inner FOR loop
+    } //end of outer FOR loop
+  } //end of resetTTT
 
 } //end of Program (TTT class)
