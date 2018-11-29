@@ -577,4 +577,28 @@ public class GameMethod { //This holds all of the methods used in each game
 			System.out.println("Game over! The word was " + Static.word);
 		}
 
+  public static String generateTestWords(int size) {
+   String testString = "";
+   String[] words = new String[] {"cat", "dog", "animal", "basketball", "pizza", "house", "desk", "elephant", "student", "mushroom", "banana", "spongebob", "zealous", "sheep", "aloof", "pneumonia"};
+   for (int i = 0; i < size; i++) {
+    int randomIndex = (int) (Math.random() * words.length);
+    testString += words[randomIndex] + " ";
+   }
+   return testString;
+  }
+
+  // Method from https://stackoverflow.com/a/22186845
+  public static double round (double value, int precision) {
+    int scale = (int) Math.pow(10, precision);
+    return (double) Math.round(value * scale) / scale;
+  }
+
+  public static void printStats(double totalSeconds, int testStringSize) {
+    double wordsPerMinute = testStringSize / (totalSeconds / 60);
+    double roundedTime = round(totalSeconds, 1);
+    double roundedWpm = round(wordsPerMinute, 1);
+    System.out.println("\nCORRECT! Here are your stats:\n---------");
+    System.out.println("Total time: " + roundedTime + " seconds");
+    System.out.println("Words Per Minute: " + roundedWpm);
+  }
 } //end of gameMethod
