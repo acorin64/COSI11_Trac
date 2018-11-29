@@ -1,15 +1,15 @@
 import java.util.Scanner;
 // just need to show what letters have been guesses already
-public class Hangman {
+public class HangmanForTrack {
 //list of words
 	public static String[] words = {"terminator", "code", "computer", "miami", "github", "hangman", "software", "charger", "void", "tim" };
   //unsure below
 	public static String word = words[(int) (Math.random() * words.length)];
-  // changes the word length to that length of asteriks -- change asteriks to ____
+  // 
 	public static String Underscore = new String(new char[word.length()]).replace("\0", "_");
   //send count to 0
 	public static int count = 0;
-//set method for getting letters - convert to textio?
+//
 	public static void main(String[] args) {
     //gets input
     //System.out.println("test");
@@ -74,19 +74,19 @@ public class Hangman {
       // the switch statements for all
       //default: do i need?
 		public static void hang1() {
-      System.out.println("Wrong guess, try again");
-      System.out.println("   ____________");
-      System.out.println("   |          |");
-      System.out.println("   |");
-      System.out.println("   |");
-      System.out.println("   |");
-      System.out.println("   |");
-      System.out.println("   |");
-      System.out.println("   | ");
-      System.out.println("___|___");
+   			 System.out.println("Wrong guess, try again");
+   			 System.out.println("   ____________");
+   			 System.out.println("   |          |");
+    			 System.out.println("   |");
+    			 System.out.println("   |");
+    			 System.out.println("   |");
+    			 System.out.println("   |");
+    			 System.out.println("   |");
+     			 System.out.println("   | ");
+     			 System.out.println("___|___");
 		}
 		public static void hang2() {
-      System.out.println("Wrong guess, try again");
+    			System.out.println("Wrong guess, try again");
 			System.out.println("   ____________");
 			System.out.println("   |          _|_");
 			System.out.println("   |         /   \\");
@@ -127,7 +127,7 @@ public class Hangman {
 			System.out.println("   |          _|_");
 			System.out.println("   |         /   \\");
 			System.out.println("   |         \\__ /");
-      System.out.println("   |           |");
+      			System.out.println("   |           |");
 			System.out.println("   |           | ");
 			System.out.println("   |          / \\ ");
 			System.out.println("   |         /   \\");
@@ -147,17 +147,16 @@ public class Hangman {
 		}
     //end code, loss at 7 guesses
 		public static void hang7() {
-			System.out.println("GAME OVER!");
+			System.out.println("You lose!");
 			System.out.println("   ____________");
 			System.out.println("   |          _|_");
 			System.out.println("   |         /   \\");
 			System.out.println("   |         \\__ /");
-      System.out.println("   |          _|_");
+      			System.out.println("   |          _|_");
 			System.out.println("   |         / | \\");
 			System.out.println("   |          / \\ ");
 			System.out.println("   |         /   \\");
 			System.out.println("___|___");
-			System.out.println("Game over! The word was " + word);
+			System.out.println("Game over! The word was actually  " + word);
 		}
 	}
-// fix _ and finish commenting
