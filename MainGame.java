@@ -263,9 +263,8 @@ public class MainGame {
   	Static.count = 0; //hangman
   }
 
-  public static void startTypingTest(int testStringSize) {
+  public static void startTypingTest(int testStringSize, Scanner scanner) {
    String testString = GameMethod.generateTestWords(testStringSize);
-   Scanner scanner = new Scanner(System.in);
    System.out.println("Press enter when you are ready. Once you press enter, a sequence of words will appears. Type them and press enter to calculate your typing speed.");
    scanner.nextLine();
    System.out.println("Begin\n---------");
@@ -284,7 +283,6 @@ public class MainGame {
    double totalSeconds = (endTime - startTime) / 1000;
 
    GameMethod.printStats(totalSeconds, testStringSize);
-   scanner.close();
   }
 
 

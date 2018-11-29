@@ -2,9 +2,10 @@ import java.util.Scanner;
 
 public class TextGames {
   public static void main(String[] args){
+    Scanner scanner = new Scanner(System.in);
     System.out.println("Hello, Welcome to Text Games!");
     int gameID = 0;
-    mainMenu: while (true) {  //This loop allows the player to select a game from the main menu
+    while (true) {  //This loop allows the player to select a game from the main menu
       System.out.println("Please select a game by its number to play from the menu below:");
       System.out.println("1. Rocks, Paper, Scissors");
       System.out.println("2. Two-Player Tic-Tac-Toe");
@@ -15,8 +16,8 @@ public class TextGames {
       System.out.println("7. Hangman");
       System.out.println("8. Typing Test");
       System.out.println("9. Exit Text Games");
-      System.out.println("> ");
-      gameID = TextIO.getlnInt(); //this gets the users game choice
+      System.out.print("> ");
+      gameID = scanner.nextInt(); //this gets the users game choice
       switch (gameID) { //this uses methods to launch the game that the player chooses
         case 1:
           MainGame.playRPS();  //this is rock, paper, Scissors
@@ -40,12 +41,11 @@ public class TextGames {
           MainGame.hangmanMain();
           break;
         case 8:
-          MainGame.startTypingTest(2);
+          MainGame.startTypingTest(2, scanner);
           break;
         case 9:
-          break mainMenu;
-        default:
-          System.out.println("Not a valid choice.");
+          System.out.println("Thanks for playing!");
+          return;
       } //end of switch (gameID)
     } //end of mainMenu
   } //end of main
