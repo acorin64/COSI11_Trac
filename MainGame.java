@@ -234,18 +234,16 @@ public class MainGame {
     GameMethod.playRPSAgain(); //ask if you will play again
   } //end of playRPS
 
-  public static void hangmanMain() {
-    Scanner sc = new Scanner(System.in);
+  public static void hangmanMain(Scanner scanner) {
     while (Static.count < 7 && Static.Underscore.contains("_")) { //loop to continue until loss or win
       System.out.println("Guess any letter in the word");  //ask user for a letter
       System.out.println(Static.Underscore); //prints out how many letters there are in asteriks
       int numLetters = Static.word.length();
       System.out.println("there are "+ numLetters + " letters in the word. Good Luck!");
       //ask for the guess - input is here
-      String guess = sc.next();
+      String guess = scanner.next();
       GameMethod.hang(guess);//uses hang method with guess
 		}	//closes loop
-		sc.close(); // here
 
     resetStatics();
 	}

@@ -6,6 +6,7 @@ public class TextGames {
     System.out.println("Hello, Welcome to Text Games!");
     int gameID = 0;
     while (true) {  //This loop allows the player to select a game from the main menu
+      System.out.println("");
       System.out.println("Please select a game by its number to play from the menu below:");
       System.out.println("1. Rocks, Paper, Scissors");
       System.out.println("2. Two-Player Tic-Tac-Toe");
@@ -38,13 +39,14 @@ public class TextGames {
           MainGame.adventureGame();
           break;
         case 7:
-          MainGame.hangmanMain();
+          MainGame.hangmanMain(scanner);
           break;
         case 8:
           MainGame.startTypingTest(2, scanner);
           break;
         case 9:
           System.out.println("Thanks for playing!");
+          scanner.close();
           return;
       } //end of switch (gameID)
     } //end of mainMenu
