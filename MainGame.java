@@ -1,6 +1,24 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
+import java.nio.charset.Charset;
 import java.util.Scanner;
+import org.json.JSONObject;
 
 public class MainGame {
+  /**
+  the makes a call to openweathermap.com to get the weather data
+  for the specified zipcode and then prints the info on the screen
+  */
+  public static void getWeatherByZip(String[] args){
+    String zipcode = "02453";
+    if (args.length == 1){
+      zipcode = args[0];
+    }
+    GameMethod.getWeather(zipcode);
+  }
+
   public static void playTTT() {  //This method is the Tic Tac Toe game
     GameMethod.emptyBoard();
     GameMethod.welcomePlayer();
@@ -234,16 +252,18 @@ public class MainGame {
     GameMethod.playRPSAgain(); //ask if you will play again
   } //end of playRPS
 
-  public static void hangmanMain(Scanner scanner) {
+  public static void hangmanMain() {
+    Scanner sc = new Scanner(System.in);
     while (Static.count < 7 && Static.Underscore.contains("_")) { //loop to continue until loss or win
       System.out.println("Guess any letter in the word");  //ask user for a letter
       System.out.println(Static.Underscore); //prints out how many letters there are in asteriks
       int numLetters = Static.word.length();
       System.out.println("there are "+ numLetters + " letters in the word. Good Luck!");
       //ask for the guess - input is here
-      String guess = scanner.next();
+      String guess = sc.next();
       GameMethod.hang(guess);//uses hang method with guess
 		}	//closes loop
+		sc.close(); // here
 
     resetStatics();
 	}
@@ -261,8 +281,9 @@ public class MainGame {
   	Static.count = 0; //hangman
   }
 
-  public static void startTypingTest(int testStringSize, Scanner scanner) {
+  public static void startTypingTest(int testStringSize) {
    String testString = GameMethod.generateTestWords(testStringSize);
+   Scanner scanner = new Scanner(System.in);
    System.out.println("Press enter when you are ready. Once you press enter, a sequence of words will appears. Type them and press enter to calculate your typing speed.");
    scanner.nextLine();
    System.out.println("Begin\n---------");
@@ -281,6 +302,7 @@ public class MainGame {
    double totalSeconds = (endTime - startTime) / 1000;
 
    GameMethod.printStats(totalSeconds, testStringSize);
+   scanner.close();
   }
 
 

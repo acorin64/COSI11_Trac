@@ -1,4 +1,10 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
+import java.nio.charset.Charset;
 import java.util.Scanner;
+import org.json.JSONObject;
 
 public class Static {
   //static variables for all games are listed here

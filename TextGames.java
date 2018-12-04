@@ -1,12 +1,16 @@
 import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
+import java.nio.charset.Charset;
+import org.json.JSONObject;
 
 public class TextGames {
   public static void main(String[] args){
-    Scanner scanner = new Scanner(System.in);
     System.out.println("Hello, Welcome to Text Games!");
     int gameID = 0;
-    while (true) {  //This loop allows the player to select a game from the main menu
-      System.out.println("");
+    mainMenu: while (true) {  //This loop allows the player to select a game from the main menu
       System.out.println("Please select a game by its number to play from the menu below:");
       System.out.println("1. Rocks, Paper, Scissors");
       System.out.println("2. Two-Player Tic-Tac-Toe");
@@ -16,9 +20,10 @@ public class TextGames {
       System.out.println("6. Adventure Game");
       System.out.println("7. Hangman");
       System.out.println("8. Typing Test");
-      System.out.println("9. Exit Text Games");
-      System.out.print("> ");
-      gameID = scanner.nextInt(); //this gets the users game choice
+      System.out.println("9. Weather Game");
+      System.out.println("10. Exit Text Games");
+      System.out.println("> ");
+      gameID = TextIO.getlnInt(); //this gets the users game choice
       switch (gameID) { //this uses methods to launch the game that the player chooses
         case 1:
           MainGame.playRPS();  //this is rock, paper, Scissors
@@ -39,15 +44,20 @@ public class TextGames {
           MainGame.adventureGame();
           break;
         case 7:
-          MainGame.hangmanMain(scanner);
+          MainGame.hangmanMain();
           break;
         case 8:
-          MainGame.startTypingTest(2, scanner);
+          MainGame.startTypingTest(2);
           break;
         case 9:
-          System.out.println("Thanks for playing!");
-          scanner.close();
-          return;
+          System.out.print("Please enter a zip code before you start: ");
+          args[0] = TextIO.getlnWord();
+          MainGame.getWeatherByZip(args);;
+          break;
+        case 10:
+          break mainMenu;
+        default:
+          System.out.println("Not a valid choice.");
       } //end of switch (gameID)
     } //end of mainMenu
   } //end of main
