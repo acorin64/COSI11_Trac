@@ -51,10 +51,9 @@ public class GameMethod { //This holds all of the methods used in each game
   /**
   This gets the weather for a given zipcode...
   */
-  public static void getWeather(){
+  public static void getWeather(Scanner scanner){
      // Prompts the user to enter their ZIP code
 	   System.out.print("Enter a ZIP code: ");
-	   Scanner scanner = new Scanner(System.in);
 	   String zip = scanner.next();
      // Creates the URL for the API request
 	   String apiKey = "06d70799a9fcdfb5cffd48536349e502";

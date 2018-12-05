@@ -9,6 +9,7 @@ import org.json.JSONObject;
 public class TextGames {
   public static void main(String[] args){
     System.out.println("Hello, Welcome to Text Games!");
+    Scanner scanner = new Scanner(System.in);
     int gameID = 0;
     mainMenu: while (true) {  //This loop allows the player to select a game from the main menu
       System.out.println("Please select a game by its number to play from the menu below:");
@@ -44,13 +45,13 @@ public class TextGames {
           MainGame.adventureGame();
           break;
         case 7:
-          MainGame.hangmanMain();
+          MainGame.hangmanMain(scanner);
           break;
         case 8:
-          MainGame.startTypingTest(2);
+          MainGame.startTypingTest(2, scanner);
           break;
         case 9:
-          MainGame.getWeatherByZip();
+          MainGame.getWeatherByZip(scanner);
           break;
         case 10:
           break mainMenu;

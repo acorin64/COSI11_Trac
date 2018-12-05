@@ -13,8 +13,8 @@ public class MainGame {
   *for the specified zipcode and then prints the info on the screen
   *@param String[] args - the first element of this array will be the zipcode
   */
-  public static void getWeatherByZip(){
-    GameMethod.getWeather(); //calls getWeather method to continue playing the Weather game
+  public static void getWeatherByZip(Scanner scanner){
+    GameMethod.getWeather(scanner); //calls getWeather method to continue playing the Weather game
   }
 
   /**
@@ -272,18 +272,17 @@ public class MainGame {
   /**
   *This method is the primary method for the Hangman game
   */
-  public static void hangmanMain() {
-    Scanner sc = new Scanner(System.in);
+  public static void hangmanMain(Scanner scanner) {
+
     while (Static.count < 7 && Static.Underscore.contains("_")) { //loop to continue until loss or win
       System.out.println("Guess any letter in the word");  //ask user for a letter
       System.out.println(Static.Underscore); //prints out how many letters there are in asteriks
       int numLetters = Static.word.length();
       System.out.println("there are "+ numLetters + " letters in the word. Good Luck!");
       //ask for the guess - input is here
-      String guess = sc.next();
+      String guess = scanner.next();
       GameMethod.hang(guess);//uses hang method with guess
 		}	//closes loop
-		sc.close(); // here
 
     resetStatics(); //resets the static variables used in this game
 	}
@@ -307,11 +306,10 @@ public class MainGame {
   /**
   *This method is the primary method for the Typing Test game
   */
-  public static void startTypingTest(int testStringSize) {
+  public static void startTypingTest(int testStringSize, Scanner scanner) {
      // Generates a test string of random words
      String testString = GameMethod.generateTestWords(testStringSize);
      testString = testString.trim();
-     Scanner scanner = new Scanner(System.in);
      // Waits for the user to press enter to begin the game
      System.out.println("Press enter when you are ready. Once you press enter, a sequence of words will appears. Type them and press enter to calculate your typing speed.");
      scanner.nextLine();
@@ -333,7 +331,6 @@ public class MainGame {
    double totalSeconds = (endTime - startTime) / 1000;
    // Prints the results of the typing test
    GameMethod.printStats(totalSeconds, testStringSize);
-   scanner.close();
   }
 
 
