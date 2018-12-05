@@ -51,19 +51,23 @@ public class GameMethod { //This holds all of the methods used in each game
   /**
   This gets the weather for a given zipcode...
   */
-  public static void getWeather(String zipcode){
+  public static void getWeather(){
+     // Prompts the user to enter their ZIP code
 	   System.out.print("Enter a ZIP code: ");
 	   Scanner scanner = new Scanner(System.in);
 	   String zip = scanner.next();
+     // Creates the URL for the API request
 	   String apiKey = "06d70799a9fcdfb5cffd48536349e502";
      String url = "https://api.openweathermap.org/data/2.5/weather?zip="+zip+",us"+"&appid="+apiKey;
+     // Gets the data from the API
      String json = getStringFromURL(url);
      JSONObject obj = new JSONObject(json);
+     // Prompts the user to guess the temperature, and converts the API temp to F
 	   System.out.print("Guess the current temperature (°F): ");
-
      int tempK = obj.getJSONObject("main").getInt("temp");
      int tempF = k2f(tempK);
      int guess = scanner.nextInt();
+     // Calculates the difference and prints out the result of your guess
 	   int difference = Math.abs(guess - tempF);
 	   if (difference == 0) {
 		     System.out.println("Correct!");

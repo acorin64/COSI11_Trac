@@ -22,7 +22,7 @@ public class TextGames {
       System.out.println("8. Typing Test");
       System.out.println("9. Weather Game");
       System.out.println("10. Exit Text Games");
-      System.out.println("> ");
+      System.out.print("> ");
       gameID = TextIO.getlnInt(); //this gets the users game choice
       switch (gameID) { //this uses methods to launch the game that the player chooses
         case 1:
@@ -50,9 +50,7 @@ public class TextGames {
           MainGame.startTypingTest(2);
           break;
         case 9:
-          System.out.print("Please enter a zip code before you start: ");
-          args[0] = TextIO.getlnWord();
-          MainGame.getWeatherByZip(args);;
+          MainGame.getWeatherByZip();
           break;
         case 10:
           break mainMenu;

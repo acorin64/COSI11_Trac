@@ -13,12 +13,8 @@ public class MainGame {
   *for the specified zipcode and then prints the info on the screen
   *@param String[] args - the first element of this array will be the zipcode
   */
-  public static void getWeatherByZip(String[] args){
-    String zipcode = "02453"; //initialize zipcode
-    if (args.length == 1){  //gets the zipcode to use
-      zipcode = args[0];
-    }
-    GameMethod.getWeather(zipcode); //calls getWeather method to continue playing the Weather game
+  public static void getWeatherByZip(){
+    GameMethod.getWeather(); //calls getWeather method to continue playing the Weather game
   }
 
   /**
@@ -312,25 +308,30 @@ public class MainGame {
   *This method is the primary method for the Typing Test game
   */
   public static void startTypingTest(int testStringSize) {
-   String testString = GameMethod.generateTestWords(testStringSize);
-   Scanner scanner = new Scanner(System.in);
-   System.out.println("Press enter when you are ready. Once you press enter, a sequence of words will appears. Type them and press enter to calculate your typing speed.");
-   scanner.nextLine();
-   System.out.println("Begin\n---------");
-   long startTime = System.currentTimeMillis();
-   System.out.println(testString);
-   testString = testString.trim();
-   String input = scanner.nextLine();
-   while (!input.equals(testString)) {
-    System.out.println("Incorrect. Try again");
-    System.out.println(testString);
-    startTime = System.currentTimeMillis();
-    input = scanner.nextLine();
-   }
+     // Generates a test string of random words
+     String testString = GameMethod.generateTestWords(testStringSize);
+     testString = testString.trim();
+     Scanner scanner = new Scanner(System.in);
+     // Waits for the user to press enter to begin the game
+     System.out.println("Press enter when you are ready. Once you press enter, a sequence of words will appears. Type them and press enter to calculate your typing speed.");
+     scanner.nextLine();
+     System.out.println("Begin\n---------");
+     // Stores the start time of the game and formats
+     long startTime = System.currentTimeMillis();
+     System.out.println(testString);
+     // Waits for the user to type the string. Keeps prompting until correct
+     String input = scanner.nextLine();
+     while (!input.equals(testString)) {
+        System.out.println("Incorrect. Try again");
+        System.out.println(testString);
+        startTime = System.currentTimeMillis();
+        input = scanner.nextLine();
+     }
 
+   // Stores the end time of the game and calculates the total time taken
    long endTime = System.currentTimeMillis();
    double totalSeconds = (endTime - startTime) / 1000;
-
+   // Prints the results of the typing test
    GameMethod.printStats(totalSeconds, testStringSize);
    scanner.close();
   }
